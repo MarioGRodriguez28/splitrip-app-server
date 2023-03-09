@@ -16,7 +16,7 @@ const { username, password } = req.body
   if (!username || !password) {
     res.status(400).json({ errorMessage: "Debes rellenar todos los campos" })
     return;
-    // Esto dentendrá la funcion, detener la ruta
+    // Esto dentendrá la funcion al llegar a return
   }
 try {
     
@@ -24,15 +24,45 @@ try {
     const hashPassword = await bcrypt.hash(password, salt)
     console.log(hashPassword)
     
-    // crear el documento de usuario en la BD
+    // Creará el documento de usuario en la BD
     await User.create({
       username: username,
-      password: hashPassword
+      password: hashPassworda
     })
 
 
     
     res.json("todobien todo Ok 2")
+} catch (error) {
+    next(error)
+}
+
+})
+
+
+
+router.post("/login", async (req,res,next)=>{
+
+const {username , password} = req.body
+
+console.log(username, password)
+
+try {
+
+    // Verificamos que el usuario exista en la base de datos
+    const foundUser = await User.findOne({ username: username })
+    if (!foundUser) {
+      res.status(400).json({ errorMessage: "¡Credenciales Incorrectos!" })
+      return;
+    }
+
+    //Comprobacion de contraseña correcta 
+
+    const correctPassword = await bcrypt.compare(password, foundUser.password)
+    if (!correctPassword) {
+      res.status(400).json({ errorMessage: "¡Credenciales Incorrectos!" })
+      return;
+    }
 } catch (error) {
     next(error)
 }
