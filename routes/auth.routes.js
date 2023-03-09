@@ -1,6 +1,8 @@
 const router = require("express").Router();
 const bcrypt = require('bcryptjs');
 const User = require("../models/User.model.js")
+const jwt = require("jsonwebtoken");
+const esAutentificado = require("../middlewares/auth.middlewares.js");
 // POST /api/auth/signup - Ruta para registrarnos
 router.post("/signup", async (req, res, next)=>{
 
@@ -63,10 +65,31 @@ try {
       res.status(400).json({ errorMessage: "¡Credenciales Incorrectos!" })
       return;
     }
+
+    const payload = {
+        _id: foundUser._id,
+        username: foundUser.username,
+       
+      }
+      const authToken = jwt.sign(payload, process.env.TOKEN_SECRET, {
+        algorithm: "HS256",
+        expiresIn: "1d"
+      })
+   
+    res.status(200).json({ authToken: authToken })
+
 } catch (error) {
     next(error)
 }
 
 })
+
+
+router.get("/verify", esAutentificado, (req, res, next) => {
+    
+    console.log(req.payload)
+    res.status(200).json(req.payload)
+  
+  })
 
 module.exports = router;
