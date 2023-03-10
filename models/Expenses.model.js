@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 
 const expensesSchema = new Schema(
   {
-    Id_user: {
+    id_user: {
       type: Schema.Types.ObjectId,
       ref: 'User',
     },
@@ -12,7 +12,7 @@ const expensesSchema = new Schema(
     ammount: {
       type: Number,
     },
-    Id_group: {
+    id_group: {
       type: Schema.Types.ObjectId,
       ref: 'Group',
     },
