@@ -1,29 +1,19 @@
 const router = require("express").Router();
-const User = require("../models/User.model.js")
-const Group = require("../models/Group.model")
+const Group = require("../models/Group.model");
 
-router.post("/group", async (req, res, next)=>{
+router.post("/", async (req, res, next) => {
+  console.log(req.body);
+  const {  groupName } = req.body
 
+  try {
+    // Creará el grupo en la Base de Datos
+   await Group.create({
+      groupName: groupName
+    });
 
-    console.log(req.body)
-    
-    
-    
-    try {
-    
-    
-        
-        // Creará el grupo en la Base de Datos
-         Group.create({
-          groupName: groupName,
-          
-        })
-
-
-    
-        res.json("Grupo con exito")
-    } catch (error) {
-        next(error)
-    }
-    
-    })
+    res.json(`Grupo ${groupName} creado correctamente`);
+  } catch (error) {
+    next(error);
+  }
+});
+module.exports = router;

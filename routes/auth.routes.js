@@ -7,7 +7,6 @@ const esAutentificado = require("../middlewares/auth.middlewares.js");
 
 
 
-
 // POST /api/auth/signup - Ruta para registrarnos
 router.post("/signup", async (req, res, next)=>{
 console.log(req.body)

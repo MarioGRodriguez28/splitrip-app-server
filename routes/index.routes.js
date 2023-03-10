@@ -10,6 +10,11 @@ const authRoutes = require("./auth.routes.js")
 router.use("/auth", authRoutes)
 
 
+
+
+const groupRoutes = require("./groups.routes.js")
+router.use("/groups", groupRoutes)
+
 const expensesRoutes = require("./expenses.routes.js")
 router.use("/expenses", expensesRoutes)
 
