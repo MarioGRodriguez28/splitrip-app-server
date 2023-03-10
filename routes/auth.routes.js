@@ -3,14 +3,14 @@ const bcrypt = require('bcryptjs');
 const User = require("../models/User.model.js")
 const jwt = require("jsonwebtoken");
 const esAutentificado = require("../middlewares/auth.middlewares.js");
+
+
+
+
+
 // POST /api/auth/signup - Ruta para registrarnos
 router.post("/signup", async (req, res, next)=>{
-
-
 console.log(req.body)
-
-
-
 
 //1.VALIDACION DE BACKEND
 const { username, password } = req.body
@@ -20,6 +20,11 @@ const { username, password } = req.body
     return;
     // Esto dentendrá la funcion al llegar a return
   }
+  
+
+
+
+
 try {
     
     const salt = await bcrypt.genSalt(10)
@@ -29,7 +34,7 @@ try {
     // Creará el documento de usuario en la BD
     await User.create({
       username: username,
-      password: hashPassworda
+      password: hashPassword
     })
 
 
@@ -42,6 +47,7 @@ try {
 })
 
 
+// POST /api/auth/login - Ruta para acceder
 
 router.post("/login", async (req,res,next)=>{
 
@@ -84,7 +90,7 @@ try {
 
 })
 
-
+// GET /api/auth/verify - Ruta para verificacion
 router.get("/verify", esAutentificado, (req, res, next) => {
     
     console.log(req.payload)
