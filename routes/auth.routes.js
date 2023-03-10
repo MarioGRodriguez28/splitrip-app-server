@@ -29,7 +29,7 @@ try {
     // Creará el documento de usuario en la BD
     await User.create({
       username: username,
-      password: hashPassworda
+      password: hashPassword
     })
 
 
