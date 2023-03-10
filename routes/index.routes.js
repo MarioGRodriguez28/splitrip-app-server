@@ -10,6 +10,7 @@ const authRoutes = require("./auth.routes.js")
 router.use("/auth", authRoutes)
 
 
-
+const expensesRoutes = require("./expenses.routes.js")
+router.use("/expenses", expensesRoutes)
 
 module.exports = router;

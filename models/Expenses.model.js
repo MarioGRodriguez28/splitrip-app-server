@@ -9,7 +9,7 @@ const expensesSchema = new Schema(
     item: {
       type: String,
     },
-    amonunt: {
+    ammount: {
       type: Number,
     },
     Id_group: {
