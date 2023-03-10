@@ -5,7 +5,7 @@ const Expenses = require("../models/Expenses.model.js");
 router.get("/", async (req, res, next) => {
   try {
     const response = await Expenses.find().select("");
-    console.log("Hola", response);
+    // console.log(response);
     res.json(response);
   } catch (error) {
     next(error);
@@ -15,12 +15,14 @@ router.get("/", async (req, res, next) => {
 //POST "/api/expenses/" =>  crear gastos
 router.post("/", async (req, res, next) => {
   // console.log( req.body)
-  const {ammount, item} = req.body;
+  const {id_user, item, ammount, id_group} = req.body;
 
   try {
     await Expenses.create({
+      id_user: id_user,
       ammount: ammount,
       item: item,
+      id_group: id_group,
     });
     res.status(200).json(req.body);
   } catch (error) {
@@ -30,7 +32,7 @@ router.post("/", async (req, res, next) => {
 
 // GET "/api/expenses/:expensesId" => detalles de los gastos
 router.get("/:expensesId", async (req, res, next) => {
-  console.log("Hola", req.params);
+  console.log("adios", req.params);
   const {expensesId} = req.params;
 
   try {
