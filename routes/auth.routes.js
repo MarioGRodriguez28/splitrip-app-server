@@ -16,6 +16,17 @@ router.post("/signup", async (req, res, next) => {
     return;
     // Esto dentendrá la funcion al llegar a return
   }
+  // Agregar validaciones de contraseña
+  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+[\]{};':"\\|,.<>/?-]).{8,}$/;
+  if (!passwordRegex.test(password)) {
+    res
+      .status(400)
+      .json({
+        errorMessage:
+          "La contraseña debe tener al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial",
+      });
+    return;
+  }
 
   try {
     const salt = await bcrypt.genSalt(10);
