@@ -5,20 +5,14 @@ const userSchema = new Schema(
   {
     username: {
       type: String,
-      required: [true],
+      required: true,
       unique: true,
       trim: true
     },
-    email: {
-      type: String,
-      required: [false],
-      unique: true,
-      lowercase: true,
-      trim: true
-    },
+   
     password: {
       type: String,
-      required: [true, 'Password is required.']
+      required: true
     },
     group: [
       {
