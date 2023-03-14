@@ -4,11 +4,18 @@ const Group = require("../models/Group.model");
 router.post("/", async (req, res, next) => {
   console.log(req.body);
   const {groupName} = req.body;
+  const {members} = req.body;
+  if (!groupName  ) {
+    res.status(400).json({errorMessage: "Debes rellenar todos los campos"});
+    return;
+   
+  }
 
   try {
     // Creará el grupo en la Base de Datos
     await Group.create({
       groupName: groupName,
+      members: members
     });
 
     res.json(`Grupo ${groupName} creado correctamente`);
@@ -55,10 +62,11 @@ router.delete("/:groupId", async (req, res, next) => {
 router.patch("/:groupId", async (req, res, next) => {
   const {groupId} = req.params;
   const {groupName} = req.body;
-
+  const {members} = req.body;
   try {
     await Group.findByIdAndUpdate(groupId, {
       groupName,
+      members
     });
 
     res.json("Se ha actualizado el nombre del grupo correctamente");
