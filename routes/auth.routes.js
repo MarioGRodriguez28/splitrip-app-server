@@ -78,6 +78,14 @@ router.get("/verify", esAutentificado, (req, res, next) => {
   res.status(200).json(req.payload);
 });
 
-
+// GET /api/users - Ruta para obtener todos los usuarios
+router.get("/users", async (req, res, next) => {
+  try {
+    const userList = await User.find();
+    res.status(200).json(userList);
+  } catch (error) {
+    next(error);
+  }
+});
 
 module.exports = router;
