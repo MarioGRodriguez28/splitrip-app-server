@@ -1,9 +1,9 @@
-const { Schema, model } = require('mongoose')
+const mongoose = require('mongoose')
 
-const groupSchema = new Schema(
+const groupSchema = new mongoose.Schema(
   {
     Id_user: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
     groupName: {
@@ -20,6 +20,6 @@ const groupSchema = new Schema(
   },
 )
 
-const Group = model('Group', groupSchema)
+const Group = mongoose.model('Group', groupSchema)
 
 module.exports = Group

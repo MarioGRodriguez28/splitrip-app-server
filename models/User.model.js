@@ -1,7 +1,6 @@
-const { Schema, model } = require("mongoose");
+const mongoose = require('mongoose')
 
-
-const userSchema = new Schema(
+const userSchema = new mongoose.Schema(
   {
     username: {
       type: String,
@@ -16,11 +15,12 @@ const userSchema = new Schema(
       type: String,
       required: true
     },
-    group: [
+    groups: [
       {
-        type: String
-      }
-    ]
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Group',
+      },
+    ],
   },
   {
        
@@ -28,6 +28,6 @@ const userSchema = new Schema(
   }
 );
 
-const User = model("User", userSchema);
+const User = mongoose.model("User", userSchema);
 
 module.exports = User;
