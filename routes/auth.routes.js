@@ -99,4 +99,17 @@ router.get("/users", async (req, res, next) => {
   }
 });
 
+
+// POST /api/auth/addToUserGroups - Ruta para agregar usuario a grupo
+router.post("/addToUserGroups", esAutentificado, async (req, res, next) => {
+  const { username, groupName } = req.body;
+
+  try {
+    await addToUserGroupsService(username, groupName);
+    res.status(200).json({ message: "Usuario agregado al grupo correctamente" });
+  } catch (error) {
+    next(error);
+  }
+});
+
 module.exports = router;

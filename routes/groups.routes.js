@@ -75,16 +75,7 @@ router.patch('/:groupId', async (req, res, next) => {
   }
 })
 
-// Obtener todos los grupos de un usuario
-router.get('/:userId/groups', esAutentificado, async (req, res, next) => {
-  const { userId } = req.params // Acceder al userId desde los parámetros de la ruta
-  try {
-    const response = await Group.find({ members: userId })
-    res.json(response)
-  } catch (error) {
-    next(error)
-  }
-})
+
 
 
 module.exports = router
