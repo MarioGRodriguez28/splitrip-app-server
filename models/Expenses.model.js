@@ -1,9 +1,9 @@
-const { Schema, model } = require('mongoose')
+const mongoose = require('mongoose')
 
-const expensesSchema = new Schema(
+const expensesSchema = new mongoose.Schema(
   {
     id_user: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
     },
     item: {
@@ -13,12 +13,12 @@ const expensesSchema = new Schema(
       type: Number,
     },
     id_group: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Group',
     },
-    date: {
-      type: String,
-    },
+    // date: {
+    //   type: String,
+    // },
   },
 
   {
@@ -26,6 +26,6 @@ const expensesSchema = new Schema(
   },
 )
 
-const Expenses = model('Expenses', expensesSchema)
+const Expenses = mongoose.model('Expenses', expensesSchema)
 
 module.exports = Expenses

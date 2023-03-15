@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const Expenses = require("../models/Expenses.model.js");
-
+const esAutentificado = require("../middlewares/auth.middlewares.js")
 // GET "/api/expenses/" => Lista de gastos
 router.get("/", async (req, res, next) => {
   try {
@@ -13,13 +13,13 @@ router.get("/", async (req, res, next) => {
 });
 
 //POST "/api/expenses/" =>  crear gastos
-router.post("/", async (req, res, next) => {
+router.post("/", esAutentificado, async (req, res, next) => {
   // console.log( req.body)
-  const {id_user, item, ammount, id_group} = req.body;
-
+  const {item, ammount, id_group} = req.body;
+  const {_id} = req.payload 
   try {
     await Expenses.create({
-      id_user: id_user,
+      id_user: _id,
       ammount: ammount,
       item: item,
       id_group: id_group,
