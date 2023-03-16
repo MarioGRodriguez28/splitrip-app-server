@@ -26,15 +26,16 @@ router.post('/', esAutentificado, async (req, res, next) => {
   }
 })
 
-router.get('/', async (req, res, next) => {
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
   try {
-    const response = await Group.find().select('groupName')
+    const response = await Group.find({ Id_user: _id }).select('groupName')
     res.json(response)
   } catch (error) {
     next(error)
   }
 })
-
 // Entrar al grupo y ves sus detalles
 router.get('/:groupId', async (req, res, next) => {
   console.log(req.params)
