@@ -25,17 +25,118 @@ router.post('/', esAutentificado, async (req, res, next) => {
     next(error)
   }
 })
+router.get('/', esAutentificado, async (req, res, next) => {
+  const userId = req.payload._id
+
+  try {
+    const groups = await Group.find({ members: userId }).select('groupName')
+    res.json(groups)
+  } catch (error) {
+    next(error)
+  }
+})
 
 router.get('/', esAutentificado, async (req, res, next) => {
   const { _id } = req.payload
   
   try {
-    const response = await Group.find({ Id_user: _id }).select('groupName')
+    const response = await Group.find({ members: _id }).select('groupName')
     res.json(response)
   } catch (error) {
     next(error)
   }
 })
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+router.get('/', esAutentificado, async (req, res, next) => {
+  const { _id } = req.payload
+  
+  try {
+    const response = await Group.find({ members: _id }).select('groupName')
+    res.json(response)
+  } catch (error) {
+    next(error)
+  }
+})
+
 // Entrar al grupo y ves sus detalles
 router.get('/:groupId', async (req, res, next) => {
   console.log(req.params)
