@@ -2,23 +2,25 @@ const router = require('express').Router()
 const Group = require('../models/Group.model')
 const esAutentificado = require('../middlewares/auth.middlewares')
 
-router.post('/', async (req, res, next) => {
+router.post('/', esAutentificado, async (req, res, next) => {
   console.log(req.body)
   const { groupName } = req.body
   const { members } = req.body
+
   if (!groupName) {
     res.status(400).json({ errorMessage: 'Debes rellenar todos los campos' })
     return
   }
-
+  const {_id} = req.payload 
   try {
     // Creará el grupo en la Base de Datos
-    await Group.create({
+    const response =  await Group.create({
       groupName: groupName,
       members: members,
+      Id_user: _id,
     })
 
-    res.json(`Grupo ${groupName} creado correctamente`)
+    res.json(response)
   } catch (error) {
     next(error)
   }

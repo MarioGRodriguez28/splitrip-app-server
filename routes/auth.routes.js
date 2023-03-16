@@ -112,4 +112,30 @@ router.post("/addToUserGroups", esAutentificado, async (req, res, next) => {
   }
 });
 
+// POST /api/auth/user/addGroups - Ruta para añadir grupos a un usuario
+router.post("/user/addGroups", esAutentificado, async (req, res, next) => {
+  const { username, groups } = req.body;
+
+  try {
+    // Buscamos el usuario en la base de datos
+    const user = await User.findOne({ username: username });
+
+    if (!user) {
+      res.status(400).json({ errorMessage: "Usuario no encontrado" });
+      return;
+    }
+
+    // Añadimos los grupos al usuario
+    user.groups = groups;
+
+    // Guardamos el usuario actualizado en la base de datos
+    await user.save();
+
+    res.status(200).json({ message: "Grupos añadidos correctamente" });
+  } catch (error) {
+    next(error);
+  }
+});
+
+
 module.exports = router;
