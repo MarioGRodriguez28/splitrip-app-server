@@ -41,7 +41,8 @@ router.get('/:groupId', async (req, res, next) => {
   const { groupId } = req.params
 
   try {
-    const response = await Group.findById(groupId)
+    const response = await Group.findById(groupId).populate("members")
+    console.log(response)
     res.json(response)
   } catch (error) {
     next(error)
