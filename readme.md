@@ -125,7 +125,7 @@ User model
   {
     timestamps: true,
   },
-  
+
 ```
 
 Expenses model
@@ -160,7 +160,6 @@ Group model
 <br>
 
 ## Links
-
 
 ### Git
 
