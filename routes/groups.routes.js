@@ -11,10 +11,10 @@ router.post('/', esAutentificado, async (req, res, next) => {
     res.status(400).json({ errorMessage: 'Debes rellenar todos los campos' })
     return
   }
-  const {_id} = req.payload 
+  const { _id } = req.payload
   try {
     // Creará el grupo en la Base de Datos
-    const response =  await Group.create({
+    const response = await Group.create({
       groupName: groupName,
       members: members,
       Id_user: _id,
@@ -42,7 +42,7 @@ router.get('/:groupId', async (req, res, next) => {
   const { groupId } = req.params
 
   try {
-    const response = await Group.findById(groupId).populate("members")
+    const response = await Group.findById(groupId).populate('members')
     console.log(response)
     res.json(response)
   } catch (error) {
@@ -78,8 +78,5 @@ router.patch('/:groupId', async (req, res, next) => {
     next(error)
   }
 })
-
-
-
 
 module.exports = router

@@ -13,7 +13,7 @@ const expensesSchema = new mongoose.Schema(
       type: Number,
     },
     id_group: {
-      type: mongoose.Schema.Types.ObjectId, 
+      type: mongoose.Schema.Types.ObjectId,
       ref: 'Group',
     },
     // date: {
