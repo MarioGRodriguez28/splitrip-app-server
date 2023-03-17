@@ -14,9 +14,10 @@ router.get("/", async (req, res, next) => {
 
 //POST "/api/expenses/" =>  crear gastos
 router.post("/", esAutentificado, async (req, res, next) => {
-  // console.log( req.body)
-  const {item, ammount, id_group} = req.body;
+   console.log( "33333")
+  const {item, ammount} = req.body;
   const {_id} = req.payload 
+  const {id_group} = req.body
   try {
     await Expenses.create({
       id_user: _id,
@@ -36,7 +37,7 @@ router.get("/:expensesId", async (req, res, next) => {
   const {expensesId} = req.params;
 
   try {
-    const response = await Expenses.findById(expensesId);
+    const response = await Expenses.find({ id_group: req.params.groupId })
     res.json(response);
   } catch (error) {
     next(error);
