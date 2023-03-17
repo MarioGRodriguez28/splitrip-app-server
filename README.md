@@ -177,4 +177,4 @@ The url to your repository and to your deployed project
 
 The url to your presentation slides
 
-[Slides Link](pendding)
+[Slides Link](https://docs.google.com/presentation/d/1ByjFKW5CQJlIiwFsovG7UvNtRyEDwmysvfEfgUK1kKc/edit?usp=sharing)
